@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORA</title>
+    <style>
+        @font-face {
+            font-family: montserratBlack;
+            src: url(Montserrat-Black.ttf);
+        }
+        .main{
+            text-align: center;
+            font-family: montserratBlack;
+        }
+        .panel{
+            margin-left: auto;
+            margin-right: auto;
+            background-image:url("Mora.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            width: 500px;
+            height: 700px;
+        }
+        .content {
+            text-align:center;
+            border: 5px;
+            border-color: black;
+            top: 28%;
+            position: relative;
+        }
+        .resultado {
+            font-size: 32pt;
+            font-kerning: none;
+            color: #fee277; 
+            text-align: center;
+            font-family: montserratBlack, Arial, Helvetica, sans-serif;
+            
+        }
+       
+
+    </style>
+</head>
+<body>
+    <div class="main">
+       <h2>
+        Apoya a Mauricio Mora aquí
+       </h2>
+        <label for="InputNombre">Pon tu nombre aquí:
+        </label>
+        <input id="InputNombre" type="text" value="" maxlength="10">
+    </div> 
+    <br>
+    <div class="panel" id="panel">
+        <div class="content"> 
+            <span id="LabelResult" class="resultado">
+            </span>
+        </div>
+    </div>
+    <div class="main">
+        <button id="BtnDownload">Descargar</button>
+    </div>
+    <script src="./html2canvas.min.js"></script>
+    <script>
+        InputNombre.addEventListener("input", (event) => {
+            LabelResult.textContent = event.target.value.toString().toUpperCase();
+        });
+        BtnDownload.addEventListener("click", () => {
+            html2canvas(panel)
+            .then(canvas => {
+                let enlace = document.createElement("a");
+                enlace.download = "ApoyoMora.jpg"
+                enlace.href = canvas.toDataURL();
+                enlace.click();
+            });
+        });
+    </script>   
+    </body>
+</html>
